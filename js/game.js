@@ -46,30 +46,12 @@ $.resize = function() {
     }, 1);
 };
 
-$.Draw = {
-    clear: function() {
-        $.ctx.clearRect(0, 0, $.width, $.height);
-    },
-
-    rect: function(x, y, w, h, col) {
-        $.ctx.fillStyle = col;
-        $.ctx.fillRect(x, y, w, h);
-    },
-
-    text: function(string, x, y, size, col) {
-        $.ctx.font = 'bold '+size+'px Monospace';
-        $.ctx.fillStyle = col;
-        $.ctx.fillText(string, x, y);
-    }
-};
-
 $.reset = function () {
     var myHero = new $.Hero();
     myHero.render();
 };
 
-$.update = function () {
-};
+$.update = function () {};
 
 $.render = function () {
     $.hero.render();
@@ -82,16 +64,6 @@ $.loop = function () {
     $.render();
 };
 
-$.Hero = function () {
-	this.x = 5;
-	this.y = $.canvas.height -41;
-	this.background = 'red';
-};
-
-$.Hero.prototype.render = function () {
-    $.Draw.clear();
-    $.Draw.rect(this.x, this.y, 40, 40, 'red');
-};
 
 window.addEventListener('load', $.init, false);
 window.addEventListener('resize', $.resize, false);
