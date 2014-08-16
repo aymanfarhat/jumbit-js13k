@@ -1,3 +1,14 @@
+window.requestAnimFrame = (function(){
+    return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame || 
+    window.mozRequestAnimationFrame    || 
+    window.oRequestAnimationFrame      || 
+    window.msRequestAnimationFrame     || 
+    function( callback ){
+        window.setTimeout(callback, 1000 / 60);
+    };
+})();
+
 $ = {};
 
 $.width = 800;
@@ -13,14 +24,13 @@ $.init = function () {
     $.ctx = $.canvas.getContext('2d');
 
     $.resize();
+    $.hero = new $.Hero();
 
-    var myHero = new $.Hero();
-    myHero.render();
+    $.loop();
 };
 
 
 $.resize = function() {
-
     $.currentHeight = window.innerHeight;
     $.currentWidth = $.currentHeight * $.ratio;
 
@@ -34,7 +44,7 @@ $.resize = function() {
     window.setTimeout(function() {
             window.scrollTo(0,1);
     }, 1);
-}
+};
 
 $.Draw = {
     clear: function() {
@@ -51,6 +61,25 @@ $.Draw = {
         $.ctx.fillStyle = col;
         $.ctx.fillText(string, x, y);
     }
+};
+
+$.reset = function () {
+    var myHero = new $.Hero();
+    myHero.render();
+};
+
+$.update = function () {
+};
+
+$.render = function () {
+    $.hero.render();
+};
+
+$.loop = function () {
+    window.requestAnimFrame($.loop);
+        
+    $.update();
+    $.render();
 };
 
 $.Hero = function () {
