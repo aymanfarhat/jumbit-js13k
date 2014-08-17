@@ -27,7 +27,9 @@ $.init = function () {
     $.resize();
 
     $.hero = new $.Hero();
+
     $.entities.push($.hero);
+    $.entities.push(new $.Obstacle());
 
     $.loop();
 };
@@ -54,11 +56,15 @@ $.reset = function () {};
 $.update = function () {
     for (var i = 0; i < $.entities.length; i++) {
         $.entities[i].update();
+        //console.log($.entities[i]);
     }
 };
 
 $.render = function () {
-    $.hero.render();
+    $.Draw.clear();
+    for (var i = 0; i < $.entities.length; i++) {
+        $.entities[i].render();
+    }
 };
 
 $.Input = {

@@ -1,5 +1,5 @@
 $.Hero = function () {
-	this.x = 10;
+	this.x = 75;
 	this.y = $.canvas.height - 41;
     this.vy = 0.0;
 
@@ -17,7 +17,6 @@ $.Hero.prototype.listen = function () {
 };
 
 $.Hero.prototype.render = function () {
-    $.Draw.clear();
     $.Draw.rect(this.x, this.y, 40, 40, this.background);
 };
 
