@@ -32,7 +32,7 @@ $.Hero.prototype.listen = function () {
 };
 
 $.Hero.prototype.render = function () {
-    $.Draw.rect(this.x, this.y, 40, 40, this.background);
+    $.Draw.rect(this.x, this.y, 20, 20, this.background);
 };
 
 $.Hero.prototype.update = function () {
