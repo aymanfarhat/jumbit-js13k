@@ -3,9 +3,9 @@ $.Hero = function () {
 	this.y = $.canvas.height - 41;
     this.vy = 0.0;
 
-	this.background = 'red';
+	this.background = '#f02f2f';
     this.onGround = true;
-    this.gravity = 0.5;
+    this.gravity = 0.41875;
     this.listen();
 };
 
@@ -18,7 +18,7 @@ $.Hero.prototype.listen = function () {
 
 $.Hero.prototype.render = function () {
     $.Draw.clear();
-    $.Draw.rect(this.x, this.y, 40, 40, 'red');
+    $.Draw.rect(this.x, this.y, 40, 40, this.background);
 };
 
 $.Hero.prototype.update = function () {

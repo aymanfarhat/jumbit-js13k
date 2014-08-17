@@ -4,8 +4,13 @@ $.Draw = {
     },
 
     rect: function(x, y, w, h, col) {
+        $.ctx.beginPath();
+        $.ctx.rect(x, y, w, h);
         $.ctx.fillStyle = col;
-        $.ctx.fillRect(x, y, w, h);
+        $.ctx.fill();
+        $.ctx.lineWidth = 1;
+        $.ctx.strokeStyle = 'black';
+        $.ctx.stroke();
     },
 
     text: function(string, x, y, size, col) {
