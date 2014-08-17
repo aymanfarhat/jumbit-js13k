@@ -77,20 +77,3 @@ window.addEventListener('load', $.init, false);
 window.addEventListener('resize', $.resize, false);
 window.addEventListener( 'keyup', $.keyup);
 
-window.addEventListener('click', function(e) {
-    e.preventDefault();
-    $.hero.startJump(e);
-}, false);
-
-window.addEventListener('touchstart', function(e) {
-    e.preventDefault();
-    $.hero.startJump(e);
-}, false);
-
-window.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-}, false);
-
-window.addEventListener('touchend', function(e) {
-    e.preventDefault();
-}, false);
