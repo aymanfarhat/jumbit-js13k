@@ -30,13 +30,11 @@ $.Hero.prototype.update = function () {
         this.y = $.canvas.height - 41;
         this.onGround = true;
     }
-    
 };
 
 $.Hero.prototype.startJump = function () {
-    this.vy = -5;
-
-    if (this.onGround) {
+    
+    if (this.onGround && this.y > 60) {
         this.vy = -12;
     }
 };
