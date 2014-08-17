@@ -1,14 +1,3 @@
-window.requestAnimFrame = (function(){
-    return window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame || 
-    window.mozRequestAnimationFrame    || 
-    window.oRequestAnimationFrame      || 
-    window.msRequestAnimationFrame     || 
-    function( callback ){
-        window.setTimeout(callback, 1000 / 60);
-    };
-})();
-
 $ = {};
 
 $.width = 800;
@@ -34,7 +23,6 @@ $.init = function () {
 
     $.loop();
 };
-
 
 $.resize = function() {
     $.currentHeight = window.innerHeight;
@@ -76,4 +64,3 @@ $.loop = function () {
 window.addEventListener('load', $.init, false);
 window.addEventListener('resize', $.resize, false);
 window.addEventListener( 'keyup', $.keyup);
-
