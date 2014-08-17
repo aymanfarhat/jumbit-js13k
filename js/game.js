@@ -14,6 +14,14 @@ $.init = function () {
     $.canvas.height = $.height;
     $.ctx = $.canvas.getContext('2d');
 
+    $.nextObstacle = 30;
+
+    $.gravity = 0.41875;
+    $.startTime = new Date().getTime();
+
+    // The bottom most point allowed
+    $.base_y = $.canvas.height - 41;
+
     $.resize();
 
     $.hero = new $.Hero();
@@ -43,6 +51,17 @@ $.resize = function() {
 $.reset = function () {};
 
 $.update = function () {
+    var now = new Date().getTime();
+    var next = Math.floor((now - $.startTime)/60);
+
+    $.nextObstacle -= (1 + (next * 0.001));
+ 
+    if($.nextObstacle < 0){
+        $.entities.push(new $.Obstacle());
+        $.nextObstacle = (Math.random() * 80) + 30 - (next * 0.01);
+         
+    }
+
     for (var i = 0; i < $.entities.length; i++) {
         $.entities[i].update();
     }

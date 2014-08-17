@@ -1,11 +1,10 @@
 $.Hero = function () {
 	this.x = 75;
-	this.y = $.canvas.height - 41;
+	this.y = $.base_y;
     this.vy = 0.0;
 
 	this.background = '#f02f2f';
     this.onGround = true;
-    this.gravity = 0.41875;
 
     this.listen();
 };
@@ -37,12 +36,12 @@ $.Hero.prototype.render = function () {
 };
 
 $.Hero.prototype.update = function () {
-    this.vy += this.gravity;
+    this.vy += $.gravity;
     this.y += this.vy;
 
-    if (this.y > $.canvas.height - 41) {
+    if (this.y > $.base_y) {
         this.vy = 0;
-        this.y = $.canvas.height - 41;
+        this.y = $.base_y;
         this.onGround = true;
     }
 };
