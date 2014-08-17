@@ -13,6 +13,7 @@ $ = {};
 
 $.width = 800;
 $.height = 600;
+$.entities = [];
 
 $.init = function () {
     $.RATIO = $.width / $.height;
@@ -24,7 +25,9 @@ $.init = function () {
     $.ctx = $.canvas.getContext('2d');
 
     $.resize();
+
     $.hero = new $.Hero();
+    $.entities.push($.hero);
 
     $.loop();
 };
@@ -46,20 +49,52 @@ $.resize = function() {
     }, 1);
 };
 
-$.reset = function () {
-    var myHero = new $.Hero();
-    myHero.render();
-};
+$.reset = function () {};
 
-$.update = function () {};
+$.update = function () {
+    for (var i = 0; i < $.entities.length; i++) {
+        $.entities[i].update();
+    }
+};
 
 $.render = function () {
     $.hero.render();
 };
 
+$.Input = {
+    x: 0,
+    y: 0,
+    tapped :false,
+
+    set: function(data) {
+        this.x = data.pageX;
+        this.y = data.pageY;
+        this.tapped = true; 
+        $.hero.jumping = true;
+    }
+};
+
+
+// window.addEventListener('click', function(e) {
+//     e.preventDefault();
+//     $.Input.set(e);
+// }, false);
+// 
+// window.addEventListener('touchstart', function(e) {
+//     e.preventDefault();
+//     $.Input.set(e.touches[0]);
+// }, false);
+// 
+// window.addEventListener('touchmove', function(e) {
+//     e.preventDefault();
+// }, false);
+// 
+// window.addEventListener('touchend', function(e) {
+//     e.preventDefault();
+// }, false);
+
 $.loop = function () {
     window.requestAnimFrame($.loop);
-        
     $.update();
     $.render();
 };
@@ -67,3 +102,5 @@ $.loop = function () {
 
 window.addEventListener('load', $.init, false);
 window.addEventListener('resize', $.resize, false);
+window.addEventListener( 'keyup', $.keyup);
+
