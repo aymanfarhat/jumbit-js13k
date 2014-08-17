@@ -11,13 +11,6 @@ $.Draw = {
         $.ctx.lineWidth = 1;
         $.ctx.strokeStyle = 'black';
         $.ctx.stroke();
-
-/**
-ctx.setTransform(1, 0, 0, 1, 0, 0);
-// Will always clear the right space
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-// Still have my old transforms
-**/
     },
 
     text: function(string, x, y, size, col) {

@@ -6,13 +6,29 @@ $.Hero = function () {
 	this.background = '#f02f2f';
     this.onGround = true;
     this.gravity = 0.41875;
+
     this.listen();
 };
 
 $.Hero.prototype.listen = function () {
     var self = this;
-    window.addEventListener("mousedown", function (e) {
+
+    window.addEventListener('click', function(e) {
+        e.preventDefault();
         self.startJump(e);
+    }, false);
+
+    window.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        self.startJump(e);
+    }, false);
+
+    window.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, false);
+
+    window.addEventListener('touchend', function(e) {
+        e.preventDefault();
     }, false);
 };
 

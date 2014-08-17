@@ -13,6 +13,7 @@ $ = {};
 
 $.width = 800;
 $.height = 600;
+
 $.entities = [];
 
 $.init = function () {
@@ -56,7 +57,6 @@ $.reset = function () {};
 $.update = function () {
     for (var i = 0; i < $.entities.length; i++) {
         $.entities[i].update();
-        //console.log($.entities[i]);
     }
 };
 
@@ -67,46 +67,30 @@ $.render = function () {
     }
 };
 
-$.Input = {
-    x: 0,
-    y: 0,
-    tapped :false,
-
-    set: function(data) {
-        this.x = data.pageX;
-        this.y = data.pageY;
-        this.tapped = true; 
-        $.hero.jumping = true;
-    }
-};
-
-
-// window.addEventListener('click', function(e) {
-//     e.preventDefault();
-//     $.Input.set(e);
-// }, false);
-// 
-// window.addEventListener('touchstart', function(e) {
-//     e.preventDefault();
-//     $.Input.set(e.touches[0]);
-// }, false);
-// 
-// window.addEventListener('touchmove', function(e) {
-//     e.preventDefault();
-// }, false);
-// 
-// window.addEventListener('touchend', function(e) {
-//     e.preventDefault();
-// }, false);
-
 $.loop = function () {
     window.requestAnimFrame($.loop);
     $.update();
     $.render();
 };
 
-
 window.addEventListener('load', $.init, false);
 window.addEventListener('resize', $.resize, false);
 window.addEventListener( 'keyup', $.keyup);
 
+window.addEventListener('click', function(e) {
+    e.preventDefault();
+    $.hero.startJump(e);
+}, false);
+
+window.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    $.hero.startJump(e);
+}, false);
+
+window.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+}, false);
+
+window.addEventListener('touchend', function(e) {
+    e.preventDefault();
+}, false);
