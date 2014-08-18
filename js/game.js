@@ -68,6 +68,10 @@ $.update = function () {
         if ($.checkRectCollision($.entities[i], $.hero)) {
             $.entities[i].background = 'red';
         }
+
+        if ($.entities[i].remove) {
+           $.entities.splice(i, 1);  
+        }
     }
 };
 

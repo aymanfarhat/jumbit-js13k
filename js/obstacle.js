@@ -4,8 +4,8 @@ $.Obstacle = function () {
     this.vx = 2;
     this.height = 40;
     this.width = 40;
-
 	this.background = '#754c24';
+    this.remove = false;
 };
 
 $.Obstacle.prototype.render = function () {
@@ -14,4 +14,5 @@ $.Obstacle.prototype.render = function () {
 
 $.Obstacle.prototype.update = function () {
     this.x -= this.vx;
+    this.remove = (this.x < 100);
 };
