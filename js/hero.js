@@ -2,10 +2,12 @@ $.Hero = function () {
 	this.x = 75;
 	this.y = $.base_y;
     this.vy = 0.0;
+    this.width = 20;
+    this.height = 20;
 
 	this.background = '#f02f2f';
     this.onGround = true;
-
+    
     this.listen();
 };
 
@@ -32,7 +34,7 @@ $.Hero.prototype.listen = function () {
 };
 
 $.Hero.prototype.render = function () {
-    $.Draw.rect(this.x, this.y, 20, 20, this.background);
+    $.Draw.rect(this.x, this.y, this.width, this.height, this.background);
 };
 
 $.Hero.prototype.update = function () {
