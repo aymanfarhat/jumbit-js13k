@@ -14,5 +14,5 @@ $.Obstacle.prototype.render = function () {
 
 $.Obstacle.prototype.update = function () {
     this.x -= this.vx;
-    this.remove = (this.x < 100);
+    this.remove = (this.x < -100);
 };
