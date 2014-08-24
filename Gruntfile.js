@@ -50,6 +50,16 @@ module.exports = function(grunt) {
                     'build/style.min.css': ['src/css/**/*.css']
                 }
             }
+        },
+        compress: {
+          main: {
+            options: {
+              archive: 'build/game.zip'
+            },
+            files: [
+              {src: ['build/*'], dest: 'build/'}
+            ]
+          }
         }
     });
  
@@ -59,10 +69,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 
     grunt.registerTask(
         'build',
         'Compiles all assets to the build directory',
-        ['concat', 'uglify', 'cssmin', 'processhtml', 'htmlmin', 'clean']
+        ['concat', 'uglify', 'cssmin', 'processhtml', 'htmlmin', 'clean', 'compress']
     );
 };
