@@ -59,7 +59,6 @@ $.update = function () {
     if($.nextObstacle < 0){
         $.entities.push(new $.Obstacle());
         $.nextObstacle = (Math.random() * 80) + 30 - (next * 0.01);
-         
     }
 
     for (var i = 0; i < $.entities.length; i++) {
