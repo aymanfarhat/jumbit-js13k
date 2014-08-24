@@ -13,18 +13,15 @@ module.exports = function(grunt) {
           compress:true
         },
         files: {
-          'build/application.js': [ 'src/**/*.js' ]
+          'build/application.js': [ 'src/game.js', 'src/**/*.js' ]
         }
       }
     },
     processhtml: {
         build: {
          options: {
-           process: true,
-           data: {
-             title: 'My game',
-             message: 'This is production distribution'
-           }
+           customBlockTypes: ['include-js-file.js'],
+           process: true
          },
          files: {
            'build/index.min.html': ['src/index.html']
@@ -38,7 +35,7 @@ module.exports = function(grunt) {
            collapseWhitespace: true
          },
          files: {
-           'build/index.min.html': 'src/index.html'
+           'build/index.min.html': 'build/index.min.html'
          }
         }
     }
