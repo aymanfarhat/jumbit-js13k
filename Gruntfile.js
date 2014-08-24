@@ -13,7 +13,7 @@ module.exports = function(grunt) {
           compress:true
         },
         files: {
-          'build/application.js': [ 'src/game.js', 'src/**/*.js' ]
+          'build/game.min.js': ['build/game.concat.js']
         }
       }
     },
@@ -38,6 +38,12 @@ module.exports = function(grunt) {
            'build/index.min.html': 'build/index.min.html'
          }
         }
+    },
+    concat: {
+        build: {
+            src: ['src/js/game.js', 'src/**/*.js'],
+            dest: 'build/game.concat.js',
+        },
     }
     });
  
@@ -45,9 +51,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
     grunt.registerTask(
         'build',
-        'Compiles all assets to the build folder',
-        ['clean', 'uglify', 'processhtml', 'htmlmin'])
+        'Compiles all assets to the build directory',
+        ['clean', 'concat', 'uglify', 'processhtml', 'htmlmin']
+    );
 };
