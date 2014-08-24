@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         clean: {
             build: {
-                src: ['build/*', '!build/.gitignore']
+                src: ['build/*', '!build/.gitignore', '!build/index.min.html']
             }
         },
         uglify: {
@@ -63,6 +63,6 @@ module.exports = function(grunt) {
     grunt.registerTask(
         'build',
         'Compiles all assets to the build directory',
-        ['clean', 'concat', 'uglify', 'cssmin', 'processhtml', 'htmlmin']
+        ['concat', 'uglify', 'cssmin', 'processhtml', 'htmlmin', 'clean']
     );
 };
