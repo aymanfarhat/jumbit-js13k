@@ -6,7 +6,6 @@ var path = require('path');
 module.exports = function (processor) {
     // A simple closure for reading contents of a file and prepend/append strings to it
     function decorateFileContent (before, after) {
-        console.log(before);
         return function (content, block, blockLine, blockContent) {
                 var assetpath = block.asset;
                 var l = blockLine.length;
