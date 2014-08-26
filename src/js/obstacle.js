@@ -6,6 +6,7 @@ $.Obstacle = function () {
     this.width = 40;
 	this.background = '#754c24';
     this.remove = false;
+    this.name = "obstacle";
 };
 
 $.Obstacle.prototype.render = function () {

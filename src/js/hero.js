@@ -2,12 +2,15 @@ $.Hero = function () {
 	this.x = 75;
 	this.y = $.base_y;
     this.vy = 0.0;
-    this.width = 20;
-    this.height = 20;
+    this.hp = 100;
+
+    this.width = 30;
+    this.height = 30;
 
 	this.background = '#f02f2f';
     this.onGround = true;
-    
+    this.name = 'hero'; 
+
     this.listen();
 };
 
@@ -38,9 +41,12 @@ $.Hero.prototype.render = function () {
 };
 
 $.Hero.prototype.update = function () {
+    this.width = this.hp / 3;
+    this.height = this.hp / 3;
+ 
     this.vy += $.gravity;
     this.y += this.vy;
-
+    
     if (this.y > $.base_y) {
         this.vy = 0;
         this.y = $.base_y;
@@ -53,4 +59,8 @@ $.Hero.prototype.startJump = function () {
     if (this.onGround && this.y > 70) {
         this.vy = -8;
     }
+};
+
+$.Hero.prototype.decreaseLife = function () {
+   this.hp -= 15; 
 };

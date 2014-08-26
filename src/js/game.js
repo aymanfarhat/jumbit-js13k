@@ -65,7 +65,11 @@ $.update = function () {
         $.entities[i].update();
 
         if ($.checkRectCollision($.entities[i], $.hero)) {
-            $.entities[i].background = 'red';
+
+            // Or call destroy function later
+            $.entities.splice(i, 1);  
+
+            $.hero.decreaseLife();
         }
 
         if ($.entities[i].remove) {
