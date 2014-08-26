@@ -18,5 +18,5 @@ $.checkRectCollision = function(a, b){
     var y = Math.max(a.y, b.y);
     var n2 = Math.min(a.y + a.height, b.y + b.height);
 
-    return (n1 >= x && n2 >= y);
+    return (n1 >= x && n2 >= y && a != b);
 };
