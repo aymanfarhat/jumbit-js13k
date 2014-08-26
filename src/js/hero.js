@@ -51,6 +51,6 @@ $.Hero.prototype.update = function () {
 $.Hero.prototype.startJump = function () {
     
     if (this.onGround && this.y > 60) {
-        this.vy = -12;
+        this.vy = -8;
     }
 };

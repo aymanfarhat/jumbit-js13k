@@ -16,7 +16,7 @@ $.init = function () {
 
     $.nextObstacle = 30;
 
-    $.gravity = 0.41875;
+    $.gravity = 0.31875;
     $.startTime = new Date().getTime();
 
     // The bottom most point allowed
