@@ -27,7 +27,6 @@ $.init = function () {
     $.hero = new $.Hero();
 
     $.entities.push($.hero);
-    $.entities.push(new $.Obstacle());
 
     $.loop();
 };
@@ -44,7 +43,7 @@ $.resize = function() {
     $.canvas.style.height = $.currentHeight + 'px';
 
     window.setTimeout(function() {
-            window.scrollTo(0,1);
+        window.scrollTo(0,1);
     }, 1);
 };
 
@@ -65,11 +64,14 @@ $.update = function () {
         $.entities[i].update();
 
         if ($.checkRectCollision($.entities[i], $.hero)) {
-
             // Or call destroy function later
             $.entities.splice(i, 1);  
 
             $.hero.decreaseLife();
+        }
+        
+        if ($.checkRectAbove($.entities[i], $.hero)) {
+            $.entities[i].falling = true;
         }
 
         if ($.entities[i].remove) {

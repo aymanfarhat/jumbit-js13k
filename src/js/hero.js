@@ -9,8 +9,6 @@ $.Hero = function () {
 
 	this.background = '#f02f2f';
     this.onGround = true;
-    this.name = 'hero'; 
-
     this.listen();
 };
 

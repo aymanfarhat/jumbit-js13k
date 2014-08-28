@@ -20,3 +20,10 @@ $.checkRectCollision = function(a, b){
 
     return (n1 >= x && n2 >= y && a != b);
 };
+
+$.checkRectAbove = function (a, b) {
+    var x = Math.max(a.x, b.x);
+    var n1 = Math.min(a.x + a.width, b.x + b.width);
+
+    return (n1 >= x && a.y < b.y && a != b);
+}

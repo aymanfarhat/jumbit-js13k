@@ -2,11 +2,13 @@ $.Obstacle = function () {
 	this.x = $.canvas.width + 10;
 	this.y = $.base_y - Math.floor(Math.random() * 550) + 1;
     this.vx = 2;
+    this.vy = 0;
     this.height = 40;
     this.width = 40;
 	this.background = '#754c24';
     this.remove = false;
-    this.name = "obstacle";
+
+    this.falling = false;
 };
 
 $.Obstacle.prototype.render = function () {
@@ -14,6 +16,12 @@ $.Obstacle.prototype.render = function () {
 };
 
 $.Obstacle.prototype.update = function () {
+    if (this.falling) {
+        this.vy += $.gravity;
+        this.y += this.vy;
+    }
+
     this.x -= this.vx;
+
     this.remove = (this.x < -100);
 };
