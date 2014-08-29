@@ -8,7 +8,7 @@ $.Draw = {
         $.ctx.rect(x, y, w, h);
         $.ctx.fillStyle = col;
         $.ctx.fill();
-        $.ctx.lineWidth = 1;
+        $.ctx.lineWidth = 0.3;
         $.ctx.strokeStyle = 'black';
         $.ctx.stroke();
     },

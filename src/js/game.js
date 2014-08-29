@@ -60,16 +60,24 @@ $.update = function () {
         $.nextObstacle = (Math.random() * 80) + 30 - (next * 0.01);
     }
 
+    console.log($.entities.length);
+
     for (var i = 0; i < $.entities.length; i++) {
         $.entities[i].update();
 
-        if ($.checkRectCollision($.entities[i], $.hero)) {
-            // Or call destroy function later
-            $.entities.splice(i, 1);  
+        if ($.entities[i].type == 'obstacle' && $.checkRectCollision($.entities[i], $.hero)) {
+            if ($.entities[i].hit === false) {
+                $.entities[i].hit = true;
+                for(var j = 0; j < 5; j++) {
+                    $.entities.push(new $.Particle($.entities[i].x, $.entities[i].y));
+                }
+            }
 
+            // Or call destroy function later
+            $.entities.splice(i, 1);
             $.hero.decreaseLife();
         }
-        
+ 
         if ($.checkRectAbove($.entities[i], $.hero)) {
             $.entities[i].falling = true;
         }

@@ -1,4 +1,5 @@
 $.Obstacle = function () {
+    this.type = 'obstacle';
 	this.x = $.canvas.width + 10;
 	this.y = $.base_y - Math.floor(Math.random() * 550) + 1;
     this.vx = 2;
@@ -7,7 +8,7 @@ $.Obstacle = function () {
     this.width = 40;
 	this.background = '#754c24';
     this.remove = false;
-
+    this.hit = false;
     this.falling = false;
 };
 
