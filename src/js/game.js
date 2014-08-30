@@ -70,9 +70,7 @@ $.update = function () {
         if (currentEntity.type == 'obstacle' && collisionResult.collide) {
             if (currentEntity.hit === false) {
                 currentEntity.hit = true;
-                for(var j = 0; j < 15; j++) {
-                    $.entities.push(new $.Particle(currentEntity.x, currentEntity.y, -1, collisionResult.ydir));
-                }
+                $.generateRockBlast(currentEntity.x, currentEntity.y, -1, collisionResult.ydir, 5, currentEntity.w);
             }
 
             // Or call destroy function later

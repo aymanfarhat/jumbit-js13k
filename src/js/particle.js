@@ -1,10 +1,10 @@
-$.Particle = function (x, y, xdir, ydir) {
+$.Particle = function (x, y, xdir, ydir, w, h) {
     this.type='particle';
 	this.x = x;
 	this.y = y;
 
-    this.height = 6;
-    this.width = 2;
+    this.height = h;
+    this.width = w;
     this.remove = false;
 
     this.opacity = 1;

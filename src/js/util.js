@@ -30,3 +30,11 @@ $.checkRectAbove = function (a, b) {
 
     return (n1 >= x && a.y < b.y && a != b);
 }
+
+$.generateRockBlast = function (x, y, xdir, ydir, max, parentRockSize) {
+    $.entities.push(new $.Particle(x, y, xdir, ydir, (parentRockSize/3), (parentRockSize/3)));
+    for(var j = 0; j < 12; j++) {
+        var size = Math.floor(Math.random() * (max+1)) + 1;
+        $.entities.push(new $.Particle(x, y, xdir, ydir, size, size));
+    }
+}
