@@ -60,16 +60,18 @@ $.update = function () {
         $.nextObstacle = (Math.random() * 80) + 30 - (next * 0.01);
     }
 
-    console.log($.entities.length);
-
     for (var i = 0; i < $.entities.length; i++) {
-        $.entities[i].update();
+        var currentEntity = $.entities[i];
 
-        if ($.entities[i].type == 'obstacle' && $.checkRectCollision($.entities[i], $.hero)) {
-            if ($.entities[i].hit === false) {
-                $.entities[i].hit = true;
-                for(var j = 0; j < 5; j++) {
-                    $.entities.push(new $.Particle($.entities[i].x, $.entities[i].y));
+        currentEntity.update();
+
+        var collisionResult = $.checkRectCollision(currentEntity, $.hero);
+
+        if (currentEntity.type == 'obstacle' && collisionResult.collide) {
+            if (currentEntity.hit === false) {
+                currentEntity.hit = true;
+                for(var j = 0; j < 15; j++) {
+                    $.entities.push(new $.Particle(currentEntity.x, currentEntity.y, -1, collisionResult.ydir));
                 }
             }
 
@@ -78,11 +80,11 @@ $.update = function () {
             $.hero.decreaseLife();
         }
  
-        if ($.checkRectAbove($.entities[i], $.hero)) {
-            $.entities[i].falling = true;
+        if ($.checkRectAbove(currentEntity, $.hero)) {
+            currentEntity.falling = true;
         }
 
-        if ($.entities[i].remove) {
+        if (currentEntity.remove) {
            $.entities.splice(i, 1);  
         }
     }

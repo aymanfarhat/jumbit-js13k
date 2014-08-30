@@ -1,18 +1,17 @@
-$.Particle = function (x, y) {
+$.Particle = function (x, y, xdir, ydir) {
     this.type='particle';
 	this.x = x;
 	this.y = y;
 
     this.height = 6;
-    this.width = 6;
-	this.background = '#754c24';
+    this.width = 2;
     this.remove = false;
 
     this.opacity = 1;
     this.fade = 0.01;
     this.dir = (Math.random() * 2 > 1)? 1: -1;
-    this.vx = (Math.random() * 4) * this.dir;
-    this.vy = (Math.random() * 7);
+    this.vx = (Math.random() * 4) * xdir;
+    this.vy = (Math.random() * 7) * ydir;
                      
 };
 

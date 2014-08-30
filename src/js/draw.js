@@ -9,8 +9,8 @@ $.Draw = {
         $.ctx.fillStyle = col;
         $.ctx.fill();
         $.ctx.lineWidth = 0.3;
-        $.ctx.strokeStyle = 'black';
-        $.ctx.stroke();
+        //$.ctx.strokeStyle = 'black';
+        //$.ctx.stroke();
     },
 
     text: function(string, x, y, size, col) {

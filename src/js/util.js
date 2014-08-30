@@ -17,8 +17,11 @@ $.checkRectCollision = function(a, b){
     var n1 = Math.min(a.x + a.width, b.x + b.width);
     var y = Math.max(a.y, b.y);
     var n2 = Math.min(a.y + a.height, b.y + b.height);
-
-    return (n1 >= x && n2 >= y && a != b);
+    
+    return { 
+        collide: (n1 >= x && n2 >= y && a != b),
+        ydir: ((a.y < b.y) ? -1: 1)
+    };
 };
 
 $.checkRectAbove = function (a, b) {
