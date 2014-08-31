@@ -59,15 +59,15 @@ $.Hero.prototype.update = function () {
     // Animate hero when invincible    
     if (this.invincible > 0) {
         if (this.count < 5) {
-            this.opacity = 0;
+	        this.background = [255,165,0];
             this.count++; 
         } else {
             this.invincible -= this.count;
             this.count = 0;
-            this.opacity = 1;
+	        this.background = [240,47,47];
         }
     } else {
-        this.opacity = 1;
+	    this.background = [240,47,47];
     }
 };
 
