@@ -2,7 +2,6 @@ $.Hero = function () {
 	this.x = 75;
 	this.y = $.base_y;
     this.vy = 0.0;
-    this.hp = 100;
 
     this.width = 30;
     this.height = 30;
@@ -10,6 +9,7 @@ $.Hero = function () {
 	this.background = [240,47,47];
     this.opacity = 1;
     this.onGround = true;
+    this.lives = 6;
 
     this.invincible = 0;
     this.invincibleCount = 0;
@@ -44,8 +44,8 @@ $.Hero.prototype.render = function () {
 };
 
 $.Hero.prototype.update = function () {
-    this.width = this.hp / 3;
-    this.height = this.hp / 3;
+    this.width = (this.lives * 5);
+    this.height = (this.lives * 5);
  
     this.vy += $.gravity;
     this.y += this.vy;
@@ -58,12 +58,12 @@ $.Hero.prototype.update = function () {
     
     // Animate hero when invincible    
     if (this.invincible > 0) {
-        if (this.count < 5) {
+        if (this.invincibleCount < 5) {
 	        this.background = [255,165,0];
-            this.count++; 
+            this.invincibleCount++; 
         } else {
-            this.invincible -= this.count;
-            this.count = 0;
+            this.invincible -= this.invincibleCount;
+            this.invincibleCount = 0;
 	        this.background = [240,47,47];
         }
     } else {
@@ -77,12 +77,8 @@ $.Hero.prototype.startJump = function () {
     }
 };
 
-$.Hero.prototype.decreaseLife = function () {
-   this.hp -= 15; 
-};
-
 $.Hero.prototype.takeHit = function () {
     // Make hero invincible for the next 100 frames
     this.invincible = 80;
-    this.count = 0;
+    this.lives -= 1;
 }

@@ -28,6 +28,7 @@ $.init = function () {
 
     $.entities.push($.hero);
 
+
     $.loop();
 };
 
@@ -72,11 +73,8 @@ $.update = function () {
                 currentEntity.hit = true;
                 $.generateRockBlast(currentEntity.x, currentEntity.y, -1, collisionResult.ydir, 5, currentEntity.w);
                 $.hero.takeHit();
+                $.entities.splice(i, 1);
             }
-
-            // Or call destroy function later
-            $.entities.splice(i, 1);
-            $.hero.decreaseLife();
         }
  
         if ($.checkRectAbove(currentEntity, $.hero)) {
@@ -95,6 +93,10 @@ $.render = function () {
     $.Draw.clear();
     for (var i = 0; i < $.entities.length; i++) {
         $.entities[i].render();
+    }
+    
+    for (var l = 0; l < $.hero.lives; l++) {
+        $.Draw.rect(10 + (l * 14), 6, 10, 10, "red", 1);
     }
 };
 
