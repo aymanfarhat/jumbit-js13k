@@ -6,7 +6,7 @@ $.Particle = function (x, y, xdir, ydir, w, h) {
     this.height = h;
     this.width = w;
     this.remove = false;
-
+    this.background = [117, 76, 36];
     this.opacity = 1;
     this.fade = 0.01;
     this.dir = (Math.random() * 2 > 1)? 1: -1;
@@ -16,7 +16,7 @@ $.Particle = function (x, y, xdir, ydir, w, h) {
 };
 
 $.Particle.prototype.render = function () {
-    $.Draw.rect(this.x, this.y, this.width, this.height, 'rgba(117, 76, 36,' + this.opacity + ')');
+    $.Draw.rect(this.x, this.y, this.width, this.height, $.util.arrayToRGBAString(this.background, this.opacity));
 };
 
 $.Particle.prototype.update = function () {

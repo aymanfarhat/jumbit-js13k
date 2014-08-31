@@ -1,5 +1,3 @@
-// Collection of generic utility functions and boilerplate
-
 window.requestAnimFrame = (function(){
     return window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame || 
@@ -11,6 +9,7 @@ window.requestAnimFrame = (function(){
     };
 })();
 
+$.util = {};
 
 $.checkRectCollision = function(a, b){
     var x = Math.max(a.x, b.x);
@@ -37,4 +36,8 @@ $.generateRockBlast = function (x, y, xdir, ydir, max, parentRockSize) {
         var size = Math.floor(Math.random() * (max+1)) + 1;
         $.entities.push(new $.Particle(x, y, xdir, ydir, size, size));
     }
+}
+
+$.util.arrayToRGBAString = function (arr, opacity) {
+    return 'rgba('+arr[0]+', '+arr[1]+', '+arr[2]+', '+opacity+')';
 }
