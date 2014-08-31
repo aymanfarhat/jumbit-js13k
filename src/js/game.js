@@ -67,10 +67,11 @@ $.update = function () {
 
         var collisionResult = $.checkRectCollision(currentEntity, $.hero);
 
-        if (currentEntity.type == 'obstacle' && collisionResult.collide) {
+        if (currentEntity.type == 'obstacle' && collisionResult.collide && $.hero.invincible <= 0) {
             if (currentEntity.hit === false) {
                 currentEntity.hit = true;
                 $.generateRockBlast(currentEntity.x, currentEntity.y, -1, collisionResult.ydir, 5, currentEntity.w);
+                $.hero.takeHit();
             }
 
             // Or call destroy function later
@@ -86,6 +87,8 @@ $.update = function () {
            $.entities.splice(i, 1);  
         }
     }
+    
+    // update life bar later here...
 };
 
 $.render = function () {
@@ -97,6 +100,10 @@ $.render = function () {
 
 $.loop = function () {
     window.requestAnimFrame($.loop);
+
+    // Apply the currently set state
+    // $.states[$.currentState]();
+
     $.update();
     $.render();
 };
