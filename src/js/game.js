@@ -13,9 +13,10 @@ $.init = function () {
     $.canvas.width = $.width;
     $.canvas.height = $.height;
     $.ctx = $.canvas.getContext('2d');
+    
+    $.speed = 3;
 
     $.nextObstacle = 30;
-
     $.gravity = 0.31875;
     $.startTime = new Date().getTime();
 
@@ -27,7 +28,6 @@ $.init = function () {
     $.hero = new $.Hero();
 
     $.entities.push($.hero);
-
 
     $.loop();
 };
@@ -85,19 +85,24 @@ $.update = function () {
            $.entities.splice(i, 1);  
         }
     }
-    
-    // update life bar later here...
+};
+
+$.renderStatusBar = function () {
+    for (var l = 0; l < $.hero.lives; l++) {
+        $.Draw.rect(10 + (l * 14), 6, 10, 10, "red", 1);
+    }
+
+    $.Draw.text(($.hero.distanceCovered / 1000), 100, 15, 10, "#000");
 };
 
 $.render = function () {
     $.Draw.clear();
+
     for (var i = 0; i < $.entities.length; i++) {
         $.entities[i].render();
     }
     
-    for (var l = 0; l < $.hero.lives; l++) {
-        $.Draw.rect(10 + (l * 14), 6, 10, 10, "red", 1);
-    }
+    $.renderStatusBar(); 
 };
 
 $.loop = function () {

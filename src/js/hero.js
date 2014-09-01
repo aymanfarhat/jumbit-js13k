@@ -11,6 +11,8 @@ $.Hero = function () {
     this.onGround = true;
     this.lives = 6;
 
+    this.distanceCovered = 0;
+
     this.invincible = 0;
     this.invincibleCount = 0;
 
@@ -55,6 +57,8 @@ $.Hero.prototype.update = function () {
         this.y = $.base_y;
         this.onGround = true;
     }
+    
+    this.distanceCovered += $.speed;
     
     // Animate hero when invincible    
     if (this.invincible > 0) {
