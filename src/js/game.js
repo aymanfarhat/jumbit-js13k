@@ -14,7 +14,7 @@ $.init = function () {
     $.canvas.height = $.height;
     $.ctx = $.canvas.getContext('2d');
     
-    $.speed = 3;
+    $.speed = 2;
 
     $.nextObstacle = 30;
     $.gravity = 0.31875;

@@ -4,16 +4,16 @@ $.Obstacle = function () {
 	this.y = $.base_y - Math.floor(Math.random() * 550) + 1;
     this.vx = $.speed;
     this.vy = 0;
-    this.height = 40;
-    this.width = 40;
-	this.background = '#754c24';
+    this.height = 35;
+    this.width = 35;
+	this.background = '#aa856a';
     this.remove = false;
     this.hit = false;
     this.falling = false;
 };
 
 $.Obstacle.prototype.render = function () {
-    $.Draw.rect(this.x, this.y, this.width, this.height, this.background);
+    $.Draw.obstacle(this.x, this.y, this.width, this.background);
 };
 
 $.Obstacle.prototype.update = function () {
