@@ -65,7 +65,7 @@ $.update = function () {
         $.nextFormation -= (1 + (next * 0.001));
     
     if ($.nextFormation < 0) {
-        $.entities.push(new $.Formation(350, 0));
+        $.entities.push(new $.Formation(350, 0, $.util.random(0,1)));
         $.nextFormation = $.util.random(80, (30 - (next * 0.01)));
     }
 

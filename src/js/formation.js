@@ -1,8 +1,9 @@
-$.Formation = function (x, y) {
+$.Formation = function (x, y, formationTypeNum) {
     this.type='formation';
 	this.x = x;
 	this.y = y;
     this.vx = $.speed;
+    this.formationType = (formationTypeNum <= 0.5) ? "small" : "large";
 
     this.remove = false;
     this.opacity = 1;
@@ -23,7 +24,15 @@ $.Formation = function (x, y) {
                 [2,2,1,2,2]
             ]
         },
-        small: {},
+        small: {
+            palette: ["#aa856a", "#bc977d", "#644e39"],
+            matrix: [
+                [0,0,0,1,1],
+                [2,0,1,1,2],
+                [2,2,0,2,2],
+                [2,2,0,2,2]
+            ]
+        }
     }; 
 };
 
@@ -31,11 +40,11 @@ $.Formation.prototype.render = function () {
         var basex = this.x,
             x = this.x,
             y = this.y,
-            matrix = this.shapes.large.matrix;
+            matrix = this.shapes[this.formationType].matrix;
 
         for (var i = 0; i < matrix.length; i++) {
             for (var j = 0; j < matrix[0].length; j++) {
-                var color = this.shapes.large.palette[matrix[i][j]];
+                var color = this.shapes[this.formationType].palette[matrix[i][j]];
                 if (typeof color != 'undefined') {
                     $.Draw.rect(x, y, this.pixelSize, this.pixelSize, color);
                 }
