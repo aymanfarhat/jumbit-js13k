@@ -66,7 +66,7 @@ $.update = function () {
     
     if ($.nextFormation < 0) {
         $.entities.push(new $.Formation(350, 0));
-        $.nextFormation = (Math.random() * 80) + 30 - (next * 0.01);
+        $.nextFormation = $.util.random(80, (30 - (next * 0.01)));
     }
 
     for (var i = 0; i < $.entities.length; i++) {

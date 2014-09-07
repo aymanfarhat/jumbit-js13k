@@ -41,3 +41,7 @@ $.generateRockBlast = function (x, y, xdir, ydir, max, parentRockSize) {
 $.util.arrayToRGBAString = function (arr, opacity) {
     return 'rgba('+arr[0]+', '+arr[1]+', '+arr[2]+', '+opacity+')';
 }
+
+$.util.random = function (min, max) {
+    return Math.random() * ( max - min ) + min;
+};
