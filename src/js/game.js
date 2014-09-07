@@ -28,7 +28,7 @@ $.init = function () {
     $.hero = new $.Hero();
 
     $.entities.push($.hero);
-
+    $.entities.push(new $.Formation(200, 0));
     $.loop();
 };
 

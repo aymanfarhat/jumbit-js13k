@@ -16,7 +16,7 @@ $.Draw = {
         $.ctx.fillText(string, x, y);
     },
 
-    obstacle: function (x, y, size, col) {
+    obstacle: function (x, y, size) {
         var matrix = [
             [0,1,1,1,1,1,0],
             [1,3,3,3,2,2,1],
@@ -43,5 +43,5 @@ $.Draw = {
             y += 5;
             x = basex;
         }
-    }
+    },
 };
