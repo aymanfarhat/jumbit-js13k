@@ -37,7 +37,6 @@ $.Formation.prototype.render = function () {
             for (var j = 0; j < matrix[0].length; j++) {
                 var color = this.shapes.large.palette[matrix[i][j]];
                 if (typeof color != 'undefined') {
-                    console.log('test');
                     $.Draw.rect(x, y, this.pixelSize, this.pixelSize, color);
                 }
                 x+= 5;
@@ -49,8 +48,10 @@ $.Formation.prototype.render = function () {
 
 $.Formation.prototype.update = function () {
     this.x -= this.vx;
-
-    this.opacity -= this.fade;
+    
+    if (this.x <= 100) {
+        this.opacity -= this.fade;
+    }
 
     if(this.opacity <= 0){
         this.remove = true;

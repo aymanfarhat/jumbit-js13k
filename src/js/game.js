@@ -17,6 +17,8 @@ $.init = function () {
     $.speed = 2;
 
     $.nextObstacle = 30;
+    $.nextFormation = 30;
+
     $.gravity = 0.31875;
     $.startTime = new Date().getTime();
 
@@ -28,7 +30,6 @@ $.init = function () {
     $.hero = new $.Hero();
 
     $.entities.push($.hero);
-    $.entities.push(new $.Formation(200, 0));
     $.loop();
 };
 
@@ -55,10 +56,17 @@ $.update = function () {
     var next = Math.floor((now - $.startTime)/60);
 
     $.nextObstacle -= (1 + (next * 0.001));
- 
+     
     if($.nextObstacle < 0){
         $.entities.push(new $.Obstacle());
         $.nextObstacle = (Math.random() * 80) + 30 - (next * 0.01);
+    }
+
+        $.nextFormation -= (1 + (next * 0.001));
+    
+    if ($.nextFormation < 0) {
+        $.entities.push(new $.Formation(350, 0));
+        $.nextFormation = (Math.random() * 80) + 30 - (next * 0.01);
     }
 
     for (var i = 0; i < $.entities.length; i++) {
