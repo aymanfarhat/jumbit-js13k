@@ -1,5 +1,4 @@
 $.Draw = {
-    obstacleObj: null,
     clear: function() {
         $.ctx.clearRect(0, 0, $.width, $.height);
     },
@@ -25,5 +24,10 @@ $.Draw = {
     formation: function (x, y, type) {
         var formation_img = document.getElementById(type);
         $.ctx.drawImage(formation_img, x, y);
+    },
+
+    heart: function (x, y) {
+        var heart_img = document.getElementById('heart');
+        $.ctx.drawImage(heart_img, x, y);
     }
 };
