@@ -116,7 +116,10 @@ $.renderStatusBar = function () {
         $.Draw.heart(10 + (l * 21), 25);
     }
 
-    $.Draw.text(($.hero.distanceCovered), 270, 35, 12, "#ddbeac");
+    var distStr = ($.hero.distanceCovered / 1000).toString().match(/^\d+(?:\.\d{0,2})?/);
+    
+    $.Draw.text(distStr, 240, 35, 12, "#ddbeac");
+    $.Draw.text(' km', 275, 35, 12, "#ddbeac");
 
 };
 
