@@ -97,10 +97,10 @@ $.update = function () {
 
 $.renderStatusBar = function () {
     for (var l = 0; l < $.hero.lives; l++) {
-        $.Draw.heart(10 + (l * 21), 6);
+        $.Draw.heart(10 + (l * 21), 25);
     }
 
-    $.Draw.text(($.hero.distanceCovered), 270, 15, 12, "#ddbeac");
+    $.Draw.text(($.hero.distanceCovered), 270, 35, 12, "#ddbeac");
 
 };
 

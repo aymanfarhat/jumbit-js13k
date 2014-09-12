@@ -23,11 +23,19 @@ $.Draw = {
 
     formation: function (x, y, type) {
         var formation_img = document.getElementById(type);
+        var opacity = ((x + 22) / 100);
+
+        $.ctx.save();
+        $.ctx.globalAlpha = opacity;
         $.ctx.drawImage(formation_img, x, y);
+        $.ctx.restore();
     },
 
     heart: function (x, y) {
         var heart_img = document.getElementById('heart');
+        $.ctx.save();
+        $.ctx.globalAlpha = 1;
         $.ctx.drawImage(heart_img, x, y);
+        $.ctx.restore();
     }
 };
