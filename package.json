@@ -1,6 +1,6 @@
 {
-  "name": "js13k_game",
-  "description": "A 13kb game for JS13k competition, still no clear theme",
+  "name": "Jumbit",
+  "description": "A 13kb game for JS13k competition 2014",
   "author": "Ayman Farhat (http://aymanfarhat.com)",
   "dependencies": {
     "grunt": "0.x.x",
