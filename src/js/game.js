@@ -100,7 +100,8 @@ $.renderStatusBar = function () {
         $.Draw.rect(10 + (l * 14), 6, 10, 10, "red", 1);
     }
 
-    $.Draw.text(($.hero.distanceCovered / 1000), 270, 15, 10, "#000");
+    $.Draw.text(($.hero.distanceCovered), 270, 15, 12, "#ddbeac");
+
 };
 
 $.render = function () {
