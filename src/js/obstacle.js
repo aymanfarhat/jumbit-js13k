@@ -1,7 +1,7 @@
-$.Obstacle = function () {
+$.Obstacle = function (x, y) {
     this.type = 'obstacle';
-	this.x = $.canvas.width + 10;
-	this.y = $.base_y - Math.floor(Math.random() * 550) + 1;
+	this.x = x;
+	this.y = y;
     this.vx = $.speed;
     this.vy = 0;
     this.height = 35;

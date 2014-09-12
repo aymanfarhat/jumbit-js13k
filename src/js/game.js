@@ -15,6 +15,7 @@ $.init = function () {
     $.ctx = $.canvas.getContext('2d');
     
     $.speed = 2;
+    $.maxObstaclesOnScreen = 15;
 
     $.nextObstacle = 30;
     $.nextFormation = 30;
@@ -57,12 +58,17 @@ $.update = function () {
 
     $.nextObstacle -= (1 + (next * 0.001));
      
-    if($.nextObstacle < 0){
-        $.entities.push(new $.Obstacle());
+    if($.nextObstacle < 0) {
+        var coordinate  = $.generateRandomObstacleCoordinate($.base_y, 400);
+
+        if (typeof coordinate === 'object') {
+            $.entities.push(new $.Obstacle(coordinate.x, coordinate.y));
+        }
+
         $.nextObstacle = (Math.random() * 80) + 30 - (next * 0.01);
     }
 
-        $.nextFormation -= (1 + (next * 0.001));
+    $.nextFormation -= (1 + (next * 0.001));
     
     if ($.nextFormation < 0) {
         $.entities.push(new $.Formation(350, 0, $.util.random(0,1)));
