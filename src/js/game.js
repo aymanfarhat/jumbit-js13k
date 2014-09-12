@@ -19,6 +19,7 @@ $.init = function () {
 
     $.nextObstacle = 30;
     $.nextFormation = 30;
+    $.nextPowerup = $.util.random(2000, 6000);
 
     $.gravity = 0.31875;
     $.startTime = new Date().getTime();
@@ -75,13 +76,19 @@ $.update = function () {
         $.nextFormation = $.util.random(80, 25);
     }
 
+    $.nextPowerup -= 10;
+
+    if($.nextPowerup < 0 && $.hero.lives <= 3) {
+        $.entities.push(new $.Powerup($.util.random(100, 400), $.base_y));
+        $.nextPowerup = $.util.random(2000, 20000);
+    }
+
     for (var i = 0; i < $.entities.length; i++) {
         var currentEntity = $.entities[i];
 
         currentEntity.update();
 
         var collisionResult = $.checkRectCollision(currentEntity, $.hero);
-
         if (currentEntity.type == 'obstacle' && collisionResult.collide && $.hero.invincible <= 0) {
             if (currentEntity.hit === false) {
                 currentEntity.hit = true;
@@ -89,6 +96,9 @@ $.update = function () {
                 $.hero.takeHit();
                 $.entities.splice(i, 1);
             }
+        } else if(currentEntity.type == 'powerup' && collisionResult.collide && $.hero.invincible <= 0) {
+            $.hero.oneUp();
+            currentEntity.remove = true;
         }
  
         if ($.checkRectAbove(currentEntity, $.hero)) {

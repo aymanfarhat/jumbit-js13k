@@ -85,4 +85,9 @@ $.Hero.prototype.takeHit = function () {
     // Make hero invincible for the next 100 frames
     this.invincible = 80;
     this.lives -= 1;
-}
+};
+
+$.Hero.prototype.oneUp = function () {
+    this.invincible = 80;
+    this.lives += 1;
+};
