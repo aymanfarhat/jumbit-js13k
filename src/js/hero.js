@@ -68,10 +68,10 @@ $.Hero.prototype.update = function () {
         } else {
             this.invincible -= this.invincibleCount;
             this.invincibleCount = 0;
-	        this.background = [240,47,47];
+	        this.background = [221, 25, 25];
         }
     } else {
-	    this.background = [240,47,47];
+	    this.background = [221, 25, 25];
     }
 };
 
