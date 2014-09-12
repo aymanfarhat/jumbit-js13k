@@ -10,7 +10,8 @@
     "grunt-processhtml": "0.3.x",
     "grunt-contrib-concat": "0.5.x",
     "grunt-contrib-cssmin": "0.10.x",
-    "grunt-contrib-compress": "0.10.x"
+    "grunt-contrib-compress": "0.10.x",
+    "grunt-contrib-copy": "0.5.x"
   },
   "engine": "node >= 0.10"
 }
