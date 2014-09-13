@@ -16,7 +16,7 @@ $.init = function () {
     $.ctx = $.canvas.getContext('2d');
     
     // Initial state of the game
-    $.gameState = 'game';
+    $.gameState = 'menu';
 
     $.speed = 2;
     $.maxObstaclesOnScreen = 15;
@@ -33,8 +33,6 @@ $.init = function () {
     $.resize();
 
     $.resetGame();
-
-    $.listen();
 
     $.loop();
 };
@@ -64,7 +62,7 @@ $.resetGame = function () {
 
 $.states = {
     'menu': function () {
-
+        $.Draw.startScreen();
     },
     'game': function () {
         $.update();
@@ -172,33 +170,20 @@ $.loop = function () {
     $.states[$.gameState]();
 };
 
-$.listen = function () {
-    window.addEventListener('click', function(e) {
-        e.preventDefault();
-        if ($.gameState === 'game') {
-            $.hero.startJump(e);
-        } else if ($.gameState === 'game_over') {
-            $.resetGame();
-            $.gameState = 'game';
-        } else {
-            console.log('start state will be set here...');
-        }
-    }, false);
-
-    window.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        self.startJump(e);
-    }, false);
-
-    window.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-    }, false);
-
-    window.addEventListener('touchend', function(e) {
-        e.preventDefault();
-    }, false);
-};
+$.applyTapEvent = function (e) {
+    if ($.gameState === 'game') {
+        $.hero.startJump(e);
+    } else if ($.gameState === 'game_over') {
+        $.resetGame();
+        $.gameState = 'menu';
+    } else {
+        $.gameState = 'game';
+    }
+ };
 
 window.addEventListener('load', $.init, false);
 window.addEventListener('resize', $.resize, false);
 window.addEventListener( 'keyup', $.keyup);
+
+window.addEventListener('click', $.applyTapEvent);
+window.addEventListener('touchend', $.applyTapEvent);

@@ -37,5 +37,44 @@ $.Draw = {
         $.ctx.globalAlpha = 1;
         $.ctx.drawImage(heart_img, x, y);
         $.ctx.restore();
+    },
+
+    startScreen: function () {
+        $.Draw.clear();
+        var formationDist = 5;
+        for (var j = 0; j < 10; j++) {
+            var type = (j % 2 === 0) ? 'small_formation' : 'large_formation';
+            $.Draw.formation(formationDist, 0, type);        
+            formationDist += 30;
+        }
+
+        var logo = document.getElementById('jumbit_logo');
+        $.ctx.save();
+        $.ctx.globalAlpha = 1;
+        $.ctx.drawImage(logo, 50, 80);
+        $.ctx.restore();
+
+        var text_arr = ['A spark of flame trapped in a cold cave.',
+        'Traveling through a breeze of wind, ',
+        'how long can you survive the unstable ',
+        'frozen formations in your way?'];
+
+        var line_height = 180;
+
+        for (var i = 0; i < text_arr.length; i++) {
+            $.Draw.text(text_arr[i], 20, line_height, 12, "#ddbdac");
+            line_height += 15;
+        }
+
+        line_height += 45;
+
+        $.Draw.text('Tap to survive!', 40, line_height, 25, "#dd1919");
+
+        line_height += 160;
+        $.Draw.text('Art work ', 20, line_height, 12, "#ddbeac");
+        $.Draw.text('@shadeed9', 80, line_height, 12, "#ac907e");
+        line_height += 16;
+        $.Draw.text('Programming ', 20, line_height, 12, "#ddbeac");
+        $.Draw.text('@aymanfarhat', 105, line_height, 12, "#ac907e");
     }
 };
