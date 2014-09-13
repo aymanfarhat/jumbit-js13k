@@ -4,6 +4,7 @@ $.width = 320;
 $.height = 480;
 
 $.entities = [];
+$.gameOverWait = 100;
 
 $.init = function () {
     $.RATIO = $.width / $.height;
@@ -32,6 +33,8 @@ $.init = function () {
     $.resize();
 
     $.resetGame();
+
+    $.listen();
 
     $.loop();
 };
@@ -68,10 +71,16 @@ $.states = {
         $.render();
     },
     'game_over': function () {
+        $.Draw.clear();
+        $.Draw.text('Game Over', 70, 180, 35, '#ddbeac');
+        $.Draw.text('Managed to survive ' + $.distanceCoveredStr + ' km!', 25, 230, 18, '#ddbeac');
+        $.Draw.text('Tap or click to continue', 60, 300, 15, '#967a64');
     }
 };
 
 $.update = function () {
+    $.distanceCoveredStr = ($.hero.distanceCovered / 1000).toString().match(/^\d+(?:\.\d{0,2})?/);
+
     var now = new Date().getTime();
     var next = Math.floor((now - $.startTime)/60);
 
@@ -127,6 +136,15 @@ $.update = function () {
            $.entities.splice(i, 1);  
         }
     }
+
+    if ($.hero.lives === 0) {
+        if ($.gameOverWait === 0) {
+            $.gameOverWait = 100;
+            $.gameState = 'game_over';
+        } else {
+            $.gameOverWait -= 1;
+        }
+    }
 };
 
 $.renderStatusBar = function () {
@@ -134,9 +152,7 @@ $.renderStatusBar = function () {
         $.Draw.heart(10 + (l * 21), 25);
     }
 
-    var distStr = ($.hero.distanceCovered / 1000).toString().match(/^\d+(?:\.\d{0,2})?/);
-    
-    $.Draw.text(distStr, 240, 35, 12, "#ddbeac");
+    $.Draw.text($.distanceCoveredStr, 240, 35, 12, "#ddbeac");
     $.Draw.text(' km', 275, 35, 12, "#ddbeac");
 
 };
@@ -154,6 +170,33 @@ $.render = function () {
 $.loop = function () {
     window.requestAnimFrame($.loop);
     $.states[$.gameState]();
+};
+
+$.listen = function () {
+    window.addEventListener('click', function(e) {
+        e.preventDefault();
+        if ($.gameState === 'game') {
+            $.hero.startJump(e);
+        } else if ($.gameState === 'game_over') {
+            $.resetGame();
+            $.gameState = 'game';
+        } else {
+            console.log('start state will be set here...');
+        }
+    }, false);
+
+    window.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        self.startJump(e);
+    }, false);
+
+    window.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, false);
+
+    window.addEventListener('touchend', function(e) {
+        e.preventDefault();
+    }, false);
 };
 
 window.addEventListener('load', $.init, false);

@@ -15,31 +15,8 @@ $.Hero = function () {
 
     this.invincible = 0;
     this.invincibleCount = 0;
-
-    this.listen();
 };
 
-$.Hero.prototype.listen = function () {
-    var self = this;
-
-    window.addEventListener('click', function(e) {
-        e.preventDefault();
-        self.startJump(e);
-    }, false);
-
-    window.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        self.startJump(e);
-    }, false);
-
-    window.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-    }, false);
-
-    window.addEventListener('touchend', function(e) {
-        e.preventDefault();
-    }, false);
-};
 
 $.Hero.prototype.render = function () {
     $.Draw.rect(this.x, this.y, this.width, this.height, $.util.arrayToRGBAString(this.background, this.opacity));
