@@ -9,7 +9,14 @@ $.Draw = {
         $.ctx.fillStyle = col;
         $.ctx.fill();
     },
-
+    line: function (from, to) {
+        $.ctx.save();
+        $.ctx.strokeStyle = 'rgba(221, 189, 172, 0.5)';
+        $.ctx.moveTo(from.x,from.y);
+        $.ctx.lineTo(to.x, to.y);
+        $.ctx.stroke();
+        $.ctx.restore();
+    },
     text: function(string, x, y, size, col) {
         $.ctx.font = 'bold '+size+'px Monospace';
         $.ctx.fillStyle = col;

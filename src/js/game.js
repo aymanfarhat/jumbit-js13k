@@ -160,6 +160,7 @@ $.render = function () {
     }
     
     $.renderStatusBar(); 
+    $.Draw.line({x: 53, y: $.base_y + $.hero.height}, {x: $.hero.width+100, y: $.base_y + $.hero.height});
 };
 
 $.loop = function () {
