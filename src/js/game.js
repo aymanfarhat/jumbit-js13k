@@ -14,6 +14,9 @@ $.init = function () {
     $.canvas.height = $.height;
     $.ctx = $.canvas.getContext('2d');
     
+    // Initial state of the game
+    $.gameState = 'game';
+
     $.speed = 2;
     $.maxObstaclesOnScreen = 15;
 
@@ -22,16 +25,14 @@ $.init = function () {
     $.nextPowerup = $.util.random(2000, 6000);
 
     $.gravity = 0.31875;
-    $.startTime = new Date().getTime();
 
     // The bottom most point allowed
     $.base_y = $.canvas.height - 41;
 
     $.resize();
 
-    $.hero = new $.Hero();
+    $.resetGame();
 
-    $.entities.push($.hero);
     $.loop();
 };
 
@@ -51,7 +52,24 @@ $.resize = function() {
     }, 1);
 };
 
-$.reset = function () {};
+$.resetGame = function () {
+    $.startTime = new Date().getTime();
+    $.entities = [];
+    $.hero = new $.Hero();
+    $.entities.push($.hero);
+};
+
+$.states = {
+    'menu': function () {
+
+    },
+    'game': function () {
+        $.update();
+        $.render();
+    },
+    'game_over': function () {
+    }
+};
 
 $.update = function () {
     var now = new Date().getTime();
@@ -135,12 +153,7 @@ $.render = function () {
 
 $.loop = function () {
     window.requestAnimFrame($.loop);
-
-    // Apply the currently set state
-    // $.states[$.currentState]();
-
-    $.update();
-    $.render();
+    $.states[$.gameState]();
 };
 
 window.addEventListener('load', $.init, false);
