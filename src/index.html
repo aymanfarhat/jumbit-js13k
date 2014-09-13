@@ -1,19 +1,33 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, 
-        user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <head>
+        <title>Jumbit - A 13kb Javascript game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta property="og:title" content="Jumbit - 13KB JS Game" />
+        <meta property="og:description" content="You are a small spark of flame trapped in a cold cave. Travelling through a breeze of wind, how long can you travel through the unstable frozen formations in your way? Tap to survive!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://jumbit.co" />
+        <meta property="og:image" content="http://jumbit.co/images/jumbit_160x160.png" />
+
         <!-- build:includeCssFile build/style.min.css -->
         <style>
         body { margin: 0; padding: 0; background: #000;}
-        canvas { display: block; margin: 0 auto; background: #644e39; background-image:url('css/bg.png');}
+        canvas { display: block; margin: 0 auto; background: #644e39; }
+        @media screen and (min-width: 0px) and (max-width: 660px) {
+            #fork { display: none; }
+        }
+
+        @media screen and (min-width: 660px) {
+            #fork { display: block; }
+        }
         </style>
         <!-- /build -->
     </head>
     <body>
+        <a href="https://github.com/you" id="fork"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
         <canvas></canvas>
         <img src="./images/rock.png" id="obstacle" style="display:none;"/>
         <img src="./images/small.png" id="small_formation" style="display:none;"/>
