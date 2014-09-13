@@ -69,10 +69,7 @@ $.states = {
         $.render();
     },
     'game_over': function () {
-        $.Draw.clear();
-        $.Draw.text('Game Over', 70, 180, 35, '#ddbeac');
-        $.Draw.text('Managed to survive ' + $.distanceCoveredStr + ' km!', 25, 230, 18, '#ddbeac');
-        $.Draw.text('Tap or click to continue', 60, 300, 15, '#967a64');
+        $.Draw.gameOverScreen();
     }
 };
 

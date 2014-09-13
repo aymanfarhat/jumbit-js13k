@@ -41,7 +41,9 @@ $.Draw = {
 
     startScreen: function () {
         $.Draw.clear();
+
         var formationDist = 5;
+
         for (var j = 0; j < 10; j++) {
             var type = (j % 2 === 0) ? 'small_formation' : 'large_formation';
             $.Draw.formation(formationDist, 0, type);        
@@ -49,6 +51,7 @@ $.Draw = {
         }
 
         var logo = document.getElementById('jumbit_logo');
+
         $.ctx.save();
         $.ctx.globalAlpha = 1;
         $.ctx.drawImage(logo, 50, 80);
@@ -76,5 +79,21 @@ $.Draw = {
         line_height += 16;
         $.Draw.text('Programming ', 20, line_height, 12, "#ddbeac");
         $.Draw.text('@aymanfarhat', 105, line_height, 12, "#ac907e");
+    },
+
+    gameOverScreen: function () {
+        $.Draw.clear();
+
+        var formationDist = 5;
+
+        for (var j = 0; j < 10; j++) {
+            var type = (j % 2 === 0) ? 'small_formation' : 'large_formation';
+            $.Draw.formation(formationDist, 0, type);        
+            formationDist += 30;
+        }
+
+        $.Draw.text('Game Over', 70, 180, 35, '#ddbeac');
+        $.Draw.text('Managed to survive ' + $.distanceCoveredStr + ' km!', 25, 230, 18, '#ddbeac');
+        $.Draw.text('Tap or click to continue', 60, 300, 15, '#967a64');
     }
 };
