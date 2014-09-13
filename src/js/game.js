@@ -178,9 +178,29 @@ $.applyTapEvent = function (e) {
     }
  };
 
+var touchStarted = false;
+
 window.addEventListener('load', $.init, false);
 window.addEventListener('resize', $.resize, false);
 window.addEventListener( 'keyup', $.keyup);
 
 window.addEventListener('click', $.applyTapEvent);
-window.addEventListener('touchend', $.applyTapEvent);
+
+window.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    if ($.gameState !== 'game') {
+        touchStarted = true;
+        setTimeout(function () {
+            if (!touchStarted) {
+                $.applyTapEvent(e);          
+            }
+        },  200);
+    } else {
+        $.applyTapEvent(e);
+    }
+});
+
+window.addEventListener('touchend', function (e) {
+    e.preventDefault();
+    touchStarted = false;
+});
