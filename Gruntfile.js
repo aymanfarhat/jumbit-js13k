@@ -83,6 +83,6 @@ module.exports = function(grunt) {
     grunt.registerTask(
         'build',
         'Compiles all assets to the build directory',
-        ['concat', 'uglify', 'cssmin', 'processhtml', 'htmlmin', 'clean', 'compress', 'copy']
+        ['concat', 'uglify', 'cssmin', 'processhtml', 'htmlmin', 'clean', 'copy']
     );
 };
