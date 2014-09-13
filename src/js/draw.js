@@ -73,7 +73,7 @@ $.Draw = {
 
         for (var i = 0; i < text_arr.length; i++) {
             $.Draw.text(text_arr[i], 20, line_height, 12, "#ddbdac");
-            line_height += 15;
+            line_height += 18;
         }
 
         line_height += 45;
